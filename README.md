@@ -4,7 +4,7 @@
 *Updated to InApp SDK version 3.1.2*
 
 This B4A project provides an example of the [StartApp][] InApp SDK B4A integration.
-
+ 
 The example application contains the following ads:
 
 * Splash
