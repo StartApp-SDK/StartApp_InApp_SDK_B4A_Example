@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="b4a.example"
+	android:versionCode="1"
+	android:versionName=""
+	android:installLocation="internalOnly">
+	
+	<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>
+	<supports-screens android:largeScreens="true" 
+	    android:normalScreens="true" 
+	    android:smallScreens="true" 
+	    android:anyDensity="true"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<application
+		android:icon="@drawable/icon"
+		android:label="StartApp Example App B4A"
+		android:theme="@android:style/Theme.Holo">
+		
+		<activity android:name="com.startapp.android.publish.list3d.List3DActivity"
+		          android:theme="@android:style/Theme" />
+		
+		<activity android:name="com.startapp.android.publish.OverlayActivity"
+		          android:theme="@android:style/Theme.Translucent"
+		          android:configChanges="orientation|keyboardHidden|screenSize" />
+		
+		<activity android:name="com.startapp.android.publish.FullScreenActivity"
+		          android:theme="@android:style/Theme"
+		          android:configChanges="orientation|keyboardHidden|screenSize" />
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".main"
+			android:label="StartApp Example App B4A"
+			android:screenOrientation="unspecified">
+			<intent-filter>
+			   <action android:name="android.intent.action.MAIN" />
+			   <category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			
+		</activity>
+	</application>
+</manifest>

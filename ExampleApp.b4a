@@ -1,0 +1,146 @@
+﻿Version=4.3
+IconFile=
+NumberOfModules=0
+Build1=Default,b4a.example
+DoNotOverwriteManifest=False
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~~\n~'StartApp Integration~\n~AddPermission(android.permission.INTERNET)~\n~AddPermission(android.permission.ACCESS_WIFI_STATE)~\n~AddPermission(android.permission.ACCESS_NETWORK_STATE)~\n~AddPermission(android.permission.ACCESS_FINE_LOCATION)~\n~~\n~AddApplicationText(~\n~<activity android:name="com.startapp.android.publish.list3d.List3DActivity"~\n~          android:theme="@android:style/Theme" />~\n~~\n~<activity android:name="com.startapp.android.publish.OverlayActivity"~\n~          android:theme="@android:style/Theme.Translucent"~\n~          android:configChanges="orientation|keyboardHidden|screenSize" />~\n~~\n~<activity android:name="com.startapp.android.publish.FullScreenActivity"~\n~          android:theme="@android:style/Theme"~\n~          android:configChanges="orientation|keyboardHidden|screenSize" />~\n~)
+NumberOfFiles=2
+File1=activity_main.bal
+File2=logo.png
+NumberOfLibraries=2
+Library1=core
+Library2=startappinappb4awrapper-3.1.2
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: StartApp Example App B4A
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+End Sub
+
+Sub Globals
+	Dim sdk As StartAppSDK
+	Dim startAppSplash As StartAppAd
+	Dim startAppInterstitial As StartAppAd
+	Dim startAppRewardedVideo As StartAppAd
+	Dim appID As String = "B4AExampleApp"
+	Dim enableReturnAds As Boolean = True
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	
+	Activity.LoadLayout("activity_main")
+	
+	initializeObjects
+	initializeSDK
+	
+	showSplashAd(FirstTime)
+	
+	' Load an interstitial ad, so that when the 'Show Interstitial Ad'
+	' button is clicked, the Ad will be ready To be shown
+	loadInterstitialAd
+	
+	showBanner
+	
+	' Load a rewarded video ad, so that when the 'Show Rewarded Video'
+	' button is clicked, the video will be ready To be shown
+	loadRewardedVideo
+	
+End Sub
+
+Sub initializeObjects
+	startAppSplash.initialize
+	startAppInterstitial.initialize
+	startAppRewardedVideo.initialize
+End Sub
+
+Sub initializeSDK
+	sdk.init(appID, enableReturnAds)
+End Sub
+
+Sub showSplashAd(FirstTime As Boolean)
+	Dim splashConf As SplashConfig
+	Dim logoToSet As Bitmap
+	splashConf.initialize
+	splashConf.setAppName("B4A with StartApp 3.1.2")
+	logoToSet.initialize(File.DirAssets, "logo.png") 'Should be in [project folder]\Files
+	splashConf.setLogo(logoToSet)
+	startAppSplash.showSplashWithSplashConfig(FirstTime, splashConf)
+End Sub
+
+Sub loadInterstitialAd
+	startAppInterstitial.loadAd
+End Sub
+
+Sub showBanner
+	Dim autoBanner As Banner
+	Dim bannerPositionToSet As BannerPosition
+	autoBanner.addBannerWithPosition(bannerPositionToSet.BOTTOM)
+End Sub
+
+Sub loadRewardedVideo
+	Dim ad_mode As AdMode
+	startAppRewardedVideo.setVideoListener("VideoListener")
+	startAppRewardedVideo.loadAdWithAdMode(ad_mode.REWARDED_VIDEO)
+End Sub
+
+
+Sub Activity_Resume
+	startAppInterstitial.onResume
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	startAppInterstitial.onPause
+End Sub
+
+
+'Exit Ad
+Sub Activity_KeyPress(KeyCode As Int) As Boolean
+    If KeyCode = KeyCodes.KEYCODE_BACK Then
+    	startAppInterstitial.onBackPressed
+    End If
+End Sub
+
+
+'Buttons
+Sub btnShowInterstitialClicked_Click
+	startAppInterstitial.showAd
+End Sub
+
+Sub btwShowInterstitialWithCallbackClicked_Click
+	startAppInterstitial.showAdWithListener("AdDisplayListener")
+End Sub
+
+Sub btnShowRewardedVideoClicked_Click
+	startAppRewardedVideo.showAd
+End Sub
+
+
+'AdDisplayListener Callbacks
+Sub AdDisplayListener_AdHidden(ad1 As Ad)
+	ToastMessageShow ("Ad Hidden", False)
+End Sub 
+
+Sub AdDisplayListener_AdClicked(ad1 As Ad)
+	ToastMessageShow ("Ad Clicked", False)
+End Sub 
+
+Sub AdDisplayListener_AdNotDisplayed(ad1 As Ad)
+	ToastMessageShow ("Ad Not Displayed: " & ad1.NotDisplayedReason, False)
+End Sub 
+
+
+'VideoListener Callback
+Sub VideoListener_VideoCompleted
+	ToastMessageShow ("Video Completed", False)
+End Sub
