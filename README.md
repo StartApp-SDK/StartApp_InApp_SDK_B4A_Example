@@ -1,7 +1,7 @@
 [StartApp][] InApp SDK B4A Example Project
 ======================================
 
-*Updated to InApp SDK version 3.1.2*
+*Updated to InApp SDK version 3.2.0*
 
 This B4A project provides an example of the [StartApp][] InApp SDK B4A integration.
  
