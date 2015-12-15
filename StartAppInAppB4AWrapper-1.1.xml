@@ -445,15 +445,6 @@
             </parameter>
         </method>
         <method>
-            <name>showSlider</name>
-            <comment></comment>
-            <returntype>void</returntype>
-            <parameter>
-                <name>ba</name>
-                <type>anywheresoftware.b4a.BA</type>
-            </parameter>
-        </method>
-        <method>
             <name>onPause</name>
             <comment></comment>
             <returntype>void</returntype>
@@ -730,6 +721,11 @@
                 <type>boolean</type>
             </parameter>
         </method>
+        <field>
+            <name>WRAPPER_NAME</name>
+            <comment></comment>
+            <returntype>java.lang.String</returntype>
+        </field>
     </class>
     <class>
         <name>com.startapp.android.publish.b4a.model.AdPreferencesWrapper</name>
@@ -1299,6 +1295,15 @@
                 <type>anywheresoftware.b4a.AbsObjectWrapper</type>
             </parameter>
         </method>
+    </class>
+    <class>
+        <name>com.startapp.android.publish.b4a.util.StartAppConstants</name>
+        <owner>process</owner>
+        <field>
+            <name>WRAPPER_VERSION</name>
+            <comment></comment>
+            <returntype>java.lang.String</returntype>
+        </field>
     </class>
     <class>
         <name>com.startapp.android.publish.b4a.nativead.StartAppNativeAdWrapper</name>

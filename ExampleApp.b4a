@@ -1,15 +1,14 @@
-﻿Version=4.3
-IconFile=
+﻿Version=5.2
 NumberOfModules=0
 Build1=Default,b4a.example
-DoNotOverwriteManifest=False
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~~\n~'StartApp Integration~\n~AddPermission(android.permission.INTERNET)~\n~AddPermission(android.permission.ACCESS_WIFI_STATE)~\n~AddPermission(android.permission.ACCESS_NETWORK_STATE)~\n~AddPermission(android.permission.ACCESS_FINE_LOCATION)~\n~~\n~AddApplicationText(~\n~<activity android:name="com.startapp.android.publish.list3d.List3DActivity"~\n~          android:theme="@android:style/Theme" />~\n~~\n~<activity android:name="com.startapp.android.publish.OverlayActivity"~\n~          android:theme="@android:style/Theme.Translucent"~\n~          android:configChanges="orientation|keyboardHidden|screenSize" />~\n~~\n~<activity android:name="com.startapp.android.publish.FullScreenActivity"~\n~          android:theme="@android:style/Theme"~\n~          android:configChanges="orientation|keyboardHidden|screenSize" />~\n~)
+IconFile=
 NumberOfFiles=2
 File1=activity_main.bal
 File2=logo.png
 NumberOfLibraries=2
 Library1=core
-Library2=startappinappb4awrapper-3.1.2
+Library2=startappinappb4awrapper-1.1
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: StartApp Example App B4A
@@ -118,7 +117,7 @@ Sub btnShowInterstitialClicked_Click
 End Sub
 
 Sub btwShowInterstitialWithCallbackClicked_Click
-	startAppInterstitial.showAdWithListener("AdDisplayListener")
+		startAppInterstitial.showAdWithListener("AdDisplayListener")
 End Sub
 
 Sub btnShowRewardedVideoClicked_Click
@@ -127,6 +126,10 @@ End Sub
 
 
 'AdDisplayListener Callbacks
+Sub AdDisplayListener_AdDisplayed(ad1 As Ad)
+	ToastMessageShow ("Ad Displayed", False)
+End Sub 
+
 Sub AdDisplayListener_AdHidden(ad1 As Ad)
 	ToastMessageShow ("Ad Hidden", False)
 End Sub 

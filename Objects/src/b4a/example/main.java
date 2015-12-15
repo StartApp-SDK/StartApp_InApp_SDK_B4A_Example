@@ -58,10 +58,12 @@ public class main extends Activity implements B4AActivity{
 		layout = new BALayout(this);
 		setContentView(layout);
 		afterFirstLayout = false;
-		BA.handler.postDelayed(new WaitForLayout(), 5);
+        WaitForLayout wl = new WaitForLayout();
+        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(processBA, wl, true))
+		    BA.handler.postDelayed(wl, 5);
 
 	}
-	private static class WaitForLayout implements Runnable {
+	static class WaitForLayout implements Runnable {
 		public void run() {
 			if (afterFirstLayout)
 				return;
@@ -313,109 +315,268 @@ public com.startapp.android.publish.b4a.StartAppAdWrapper _startappinterstitial 
 public com.startapp.android.publish.b4a.StartAppAdWrapper _startapprewardedvideo = null;
 public static String _appid = "";
 public static boolean _enablereturnads = false;
+  public Object[] GetGlobals() {
+		return new Object[] {"Activity",mostCurrent._activity,"appID",mostCurrent._appid,"enableReturnAds",_enablereturnads,"sdk",mostCurrent._sdk,"startAppInterstitial",mostCurrent._startappinterstitial,"startAppRewardedVideo",mostCurrent._startapprewardedvideo,"startAppSplash",mostCurrent._startappsplash};
+}
 
 public static boolean isAnyActivityVisible() {
     boolean vis = false;
 vis = vis | (main.mostCurrent != null);
 return vis;}
+
+public static void killProgram() {
+     {
+            Activity __a = null;
+            if (main.previousOne != null) {
+				__a = main.previousOne.get();
+			}
+            else {
+                BA ba = main.mostCurrent.processBA.sharedProcessBA.activityBA.get();
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+}
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 29;BA.debugLine="Activity.LoadLayout(\"activity_main\")";
+try {
+		Debug.PushSubsStack("Activity_Create (main) ","main",0,mostCurrent.activityBA,mostCurrent,27);
+Debug.locals.put("FirstTime", _firsttime);
+ BA.debugLineNum = 27;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+Debug.ShouldStop(67108864);
+ BA.debugLineNum = 29;BA.debugLine="Activity.LoadLayout(\"activity_main\")";
+Debug.ShouldStop(268435456);
 mostCurrent._activity.LoadLayout("activity_main",mostCurrent.activityBA);
- //BA.debugLineNum = 31;BA.debugLine="initializeObjects";
+ BA.debugLineNum = 31;BA.debugLine="initializeObjects";
+Debug.ShouldStop(1073741824);
 _initializeobjects();
- //BA.debugLineNum = 32;BA.debugLine="initializeSDK";
+ BA.debugLineNum = 32;BA.debugLine="initializeSDK";
+Debug.ShouldStop(-2147483648);
 _initializesdk();
- //BA.debugLineNum = 34;BA.debugLine="showSplashAd(FirstTime)";
+ BA.debugLineNum = 34;BA.debugLine="showSplashAd(FirstTime)";
+Debug.ShouldStop(2);
 _showsplashad(_firsttime);
- //BA.debugLineNum = 38;BA.debugLine="loadInterstitialAd";
+ BA.debugLineNum = 38;BA.debugLine="loadInterstitialAd";
+Debug.ShouldStop(32);
 _loadinterstitialad();
- //BA.debugLineNum = 40;BA.debugLine="showBanner";
+ BA.debugLineNum = 40;BA.debugLine="showBanner";
+Debug.ShouldStop(128);
 _showbanner();
- //BA.debugLineNum = 44;BA.debugLine="loadRewardedVideo";
+ BA.debugLineNum = 44;BA.debugLine="loadRewardedVideo";
+Debug.ShouldStop(2048);
 _loadrewardedvideo();
- //BA.debugLineNum = 46;BA.debugLine="End Sub";
+ BA.debugLineNum = 46;BA.debugLine="End Sub";
+Debug.ShouldStop(8192);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static boolean  _activity_keypress(int _keycode) throws Exception{
- //BA.debugLineNum = 95;BA.debugLine="Sub Activity_KeyPress(KeyCode As Int) As Boolean";
- //BA.debugLineNum = 96;BA.debugLine="If KeyCode = KeyCodes.KEYCODE_BACK Then";
+try {
+		Debug.PushSubsStack("Activity_KeyPress (main) ","main",0,mostCurrent.activityBA,mostCurrent,95);
+Debug.locals.put("KeyCode", _keycode);
+ BA.debugLineNum = 95;BA.debugLine="Sub Activity_KeyPress(KeyCode As Int) As Boolean";
+Debug.ShouldStop(1073741824);
+ BA.debugLineNum = 96;BA.debugLine="If KeyCode = KeyCodes.KEYCODE_BACK Then";
+Debug.ShouldStop(-2147483648);
 if (_keycode==anywheresoftware.b4a.keywords.Common.KeyCodes.KEYCODE_BACK) { 
- //BA.debugLineNum = 97;BA.debugLine="startAppInterstitial.onBackPressed";
+ BA.debugLineNum = 97;BA.debugLine="startAppInterstitial.onBackPressed";
+Debug.ShouldStop(1);
 mostCurrent._startappinterstitial.onBackPressed();
  };
- //BA.debugLineNum = 99;BA.debugLine="End Sub";
+ BA.debugLineNum = 99;BA.debugLine="End Sub";
+Debug.ShouldStop(4);
 return false;
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 89;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 90;BA.debugLine="startAppInterstitial.onPause";
+try {
+		Debug.PushSubsStack("Activity_Pause (main) ","main",0,mostCurrent.activityBA,mostCurrent,89);
+Debug.locals.put("UserClosed", _userclosed);
+ BA.debugLineNum = 89;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+Debug.ShouldStop(16777216);
+ BA.debugLineNum = 90;BA.debugLine="startAppInterstitial.onPause";
+Debug.ShouldStop(33554432);
 mostCurrent._startappinterstitial.onPause();
- //BA.debugLineNum = 91;BA.debugLine="End Sub";
+ BA.debugLineNum = 91;BA.debugLine="End Sub";
+Debug.ShouldStop(67108864);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 85;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 86;BA.debugLine="startAppInterstitial.onResume";
+try {
+		Debug.PushSubsStack("Activity_Resume (main) ","main",0,mostCurrent.activityBA,mostCurrent,85);
+ BA.debugLineNum = 85;BA.debugLine="Sub Activity_Resume";
+Debug.ShouldStop(1048576);
+ BA.debugLineNum = 86;BA.debugLine="startAppInterstitial.onResume";
+Debug.ShouldStop(2097152);
 mostCurrent._startappinterstitial.onResume();
- //BA.debugLineNum = 87;BA.debugLine="End Sub";
+ BA.debugLineNum = 87;BA.debugLine="End Sub";
+Debug.ShouldStop(4194304);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _addisplaylistener_adclicked(com.startapp.android.publish.b4a.AdWrapper _ad1) throws Exception{
- //BA.debugLineNum = 121;BA.debugLine="Sub AdDisplayListener_AdClicked(ad1 As Ad)";
- //BA.debugLineNum = 122;BA.debugLine="ToastMessageShow (\"Ad Clicked\", False)";
+try {
+		Debug.PushSubsStack("AdDisplayListener_AdClicked (main) ","main",0,mostCurrent.activityBA,mostCurrent,125);
+Debug.locals.put("ad1", _ad1);
+ BA.debugLineNum = 125;BA.debugLine="Sub AdDisplayListener_AdClicked(ad1 As Ad)";
+Debug.ShouldStop(268435456);
+ BA.debugLineNum = 126;BA.debugLine="ToastMessageShow (\"Ad Clicked\", False)";
+Debug.ShouldStop(536870912);
 anywheresoftware.b4a.keywords.Common.ToastMessageShow("Ad Clicked",anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 123;BA.debugLine="End Sub";
+ BA.debugLineNum = 127;BA.debugLine="End Sub";
+Debug.ShouldStop(1073741824);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
+public static String  _addisplaylistener_addisplayed(com.startapp.android.publish.b4a.AdWrapper _ad1) throws Exception{
+try {
+		Debug.PushSubsStack("AdDisplayListener_AdDisplayed (main) ","main",0,mostCurrent.activityBA,mostCurrent,117);
+Debug.locals.put("ad1", _ad1);
+ BA.debugLineNum = 117;BA.debugLine="Sub AdDisplayListener_AdDisplayed(ad1 As Ad)";
+Debug.ShouldStop(1048576);
+ BA.debugLineNum = 118;BA.debugLine="ToastMessageShow (\"Ad Displayed\", False)";
+Debug.ShouldStop(2097152);
+anywheresoftware.b4a.keywords.Common.ToastMessageShow("Ad Displayed",anywheresoftware.b4a.keywords.Common.False);
+ BA.debugLineNum = 119;BA.debugLine="End Sub";
+Debug.ShouldStop(4194304);
+return "";
+}
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _addisplaylistener_adhidden(com.startapp.android.publish.b4a.AdWrapper _ad1) throws Exception{
- //BA.debugLineNum = 117;BA.debugLine="Sub AdDisplayListener_AdHidden(ad1 As Ad)";
- //BA.debugLineNum = 118;BA.debugLine="ToastMessageShow (\"Ad Hidden\", False)";
+try {
+		Debug.PushSubsStack("AdDisplayListener_AdHidden (main) ","main",0,mostCurrent.activityBA,mostCurrent,121);
+Debug.locals.put("ad1", _ad1);
+ BA.debugLineNum = 121;BA.debugLine="Sub AdDisplayListener_AdHidden(ad1 As Ad)";
+Debug.ShouldStop(16777216);
+ BA.debugLineNum = 122;BA.debugLine="ToastMessageShow (\"Ad Hidden\", False)";
+Debug.ShouldStop(33554432);
 anywheresoftware.b4a.keywords.Common.ToastMessageShow("Ad Hidden",anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 119;BA.debugLine="End Sub";
+ BA.debugLineNum = 123;BA.debugLine="End Sub";
+Debug.ShouldStop(67108864);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _addisplaylistener_adnotdisplayed(com.startapp.android.publish.b4a.AdWrapper _ad1) throws Exception{
- //BA.debugLineNum = 125;BA.debugLine="Sub AdDisplayListener_AdNotDisplayed(ad1 As Ad)";
- //BA.debugLineNum = 126;BA.debugLine="ToastMessageShow (\"Ad Not Displayed: \" & ad1.NotD";
+try {
+		Debug.PushSubsStack("AdDisplayListener_AdNotDisplayed (main) ","main",0,mostCurrent.activityBA,mostCurrent,129);
+Debug.locals.put("ad1", _ad1);
+ BA.debugLineNum = 129;BA.debugLine="Sub AdDisplayListener_AdNotDisplayed(ad1 As Ad)";
+Debug.ShouldStop(1);
+ BA.debugLineNum = 130;BA.debugLine="ToastMessageShow (\"Ad Not Displayed: \" & ad1.NotD";
+Debug.ShouldStop(2);
 anywheresoftware.b4a.keywords.Common.ToastMessageShow("Ad Not Displayed: "+_ad1.getNotDisplayedReason(),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 127;BA.debugLine="End Sub";
+ BA.debugLineNum = 131;BA.debugLine="End Sub";
+Debug.ShouldStop(4);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _btnshowinterstitialclicked_click() throws Exception{
- //BA.debugLineNum = 103;BA.debugLine="Sub btnShowInterstitialClicked_Click";
- //BA.debugLineNum = 104;BA.debugLine="startAppInterstitial.showAd";
+try {
+		Debug.PushSubsStack("btnShowInterstitialClicked_Click (main) ","main",0,mostCurrent.activityBA,mostCurrent,103);
+ BA.debugLineNum = 103;BA.debugLine="Sub btnShowInterstitialClicked_Click";
+Debug.ShouldStop(64);
+ BA.debugLineNum = 104;BA.debugLine="startAppInterstitial.showAd";
+Debug.ShouldStop(128);
 mostCurrent._startappinterstitial.showAd(mostCurrent.activityBA);
- //BA.debugLineNum = 105;BA.debugLine="End Sub";
+ BA.debugLineNum = 105;BA.debugLine="End Sub";
+Debug.ShouldStop(256);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _btnshowrewardedvideoclicked_click() throws Exception{
- //BA.debugLineNum = 111;BA.debugLine="Sub btnShowRewardedVideoClicked_Click";
- //BA.debugLineNum = 112;BA.debugLine="startAppRewardedVideo.showAd";
+try {
+		Debug.PushSubsStack("btnShowRewardedVideoClicked_Click (main) ","main",0,mostCurrent.activityBA,mostCurrent,111);
+ BA.debugLineNum = 111;BA.debugLine="Sub btnShowRewardedVideoClicked_Click";
+Debug.ShouldStop(16384);
+ BA.debugLineNum = 112;BA.debugLine="startAppRewardedVideo.showAd";
+Debug.ShouldStop(32768);
 mostCurrent._startapprewardedvideo.showAd(mostCurrent.activityBA);
- //BA.debugLineNum = 113;BA.debugLine="End Sub";
+ BA.debugLineNum = 113;BA.debugLine="End Sub";
+Debug.ShouldStop(65536);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _btwshowinterstitialwithcallbackclicked_click() throws Exception{
- //BA.debugLineNum = 107;BA.debugLine="Sub btwShowInterstitialWithCallbackClicked_Click";
- //BA.debugLineNum = 108;BA.debugLine="startAppInterstitial.showAdWithListener(\"AdDispla";
+try {
+		Debug.PushSubsStack("btwShowInterstitialWithCallbackClicked_Click (main) ","main",0,mostCurrent.activityBA,mostCurrent,107);
+ BA.debugLineNum = 107;BA.debugLine="Sub btwShowInterstitialWithCallbackClicked_Click";
+Debug.ShouldStop(1024);
+ BA.debugLineNum = 108;BA.debugLine="startAppInterstitial.showAdWithListener(\"AdDispl";
+Debug.ShouldStop(2048);
 mostCurrent._startappinterstitial.showAdWithListener(mostCurrent.activityBA,"AdDisplayListener");
- //BA.debugLineNum = 109;BA.debugLine="End Sub";
+ BA.debugLineNum = 109;BA.debugLine="End Sub";
+Debug.ShouldStop(4096);
 return "";
 }
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        main._process_globals();
-		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}public static String  _globals() throws Exception{
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
+public static String  _globals() throws Exception{
  //BA.debugLineNum = 18;BA.debugLine="Sub Globals";
  //BA.debugLineNum = 19;BA.debugLine="Dim sdk As StartAppSDK";
 mostCurrent._sdk = new com.startapp.android.publish.b4a.StartAppSDKWrapper();
@@ -433,86 +594,197 @@ _enablereturnads = anywheresoftware.b4a.keywords.Common.True;
 return "";
 }
 public static String  _initializeobjects() throws Exception{
- //BA.debugLineNum = 48;BA.debugLine="Sub initializeObjects";
- //BA.debugLineNum = 49;BA.debugLine="startAppSplash.initialize";
+try {
+		Debug.PushSubsStack("initializeObjects (main) ","main",0,mostCurrent.activityBA,mostCurrent,48);
+ BA.debugLineNum = 48;BA.debugLine="Sub initializeObjects";
+Debug.ShouldStop(32768);
+ BA.debugLineNum = 49;BA.debugLine="startAppSplash.initialize";
+Debug.ShouldStop(65536);
 mostCurrent._startappsplash.initialize(mostCurrent.activityBA);
- //BA.debugLineNum = 50;BA.debugLine="startAppInterstitial.initialize";
+ BA.debugLineNum = 50;BA.debugLine="startAppInterstitial.initialize";
+Debug.ShouldStop(131072);
 mostCurrent._startappinterstitial.initialize(mostCurrent.activityBA);
- //BA.debugLineNum = 51;BA.debugLine="startAppRewardedVideo.initialize";
+ BA.debugLineNum = 51;BA.debugLine="startAppRewardedVideo.initialize";
+Debug.ShouldStop(262144);
 mostCurrent._startapprewardedvideo.initialize(mostCurrent.activityBA);
- //BA.debugLineNum = 52;BA.debugLine="End Sub";
+ BA.debugLineNum = 52;BA.debugLine="End Sub";
+Debug.ShouldStop(524288);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _initializesdk() throws Exception{
- //BA.debugLineNum = 54;BA.debugLine="Sub initializeSDK";
- //BA.debugLineNum = 55;BA.debugLine="sdk.init(appID, enableReturnAds)";
+try {
+		Debug.PushSubsStack("initializeSDK (main) ","main",0,mostCurrent.activityBA,mostCurrent,54);
+ BA.debugLineNum = 54;BA.debugLine="Sub initializeSDK";
+Debug.ShouldStop(2097152);
+ BA.debugLineNum = 55;BA.debugLine="sdk.init(appID, enableReturnAds)";
+Debug.ShouldStop(4194304);
 mostCurrent._sdk.init(mostCurrent.activityBA,mostCurrent._appid,_enablereturnads);
- //BA.debugLineNum = 56;BA.debugLine="End Sub";
+ BA.debugLineNum = 56;BA.debugLine="End Sub";
+Debug.ShouldStop(8388608);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _loadinterstitialad() throws Exception{
- //BA.debugLineNum = 68;BA.debugLine="Sub loadInterstitialAd";
- //BA.debugLineNum = 69;BA.debugLine="startAppInterstitial.loadAd";
+try {
+		Debug.PushSubsStack("loadInterstitialAd (main) ","main",0,mostCurrent.activityBA,mostCurrent,68);
+ BA.debugLineNum = 68;BA.debugLine="Sub loadInterstitialAd";
+Debug.ShouldStop(8);
+ BA.debugLineNum = 69;BA.debugLine="startAppInterstitial.loadAd";
+Debug.ShouldStop(16);
 mostCurrent._startappinterstitial.loadAd(mostCurrent.activityBA);
- //BA.debugLineNum = 70;BA.debugLine="End Sub";
+ BA.debugLineNum = 70;BA.debugLine="End Sub";
+Debug.ShouldStop(32);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _loadrewardedvideo() throws Exception{
+try {
+		Debug.PushSubsStack("loadRewardedVideo (main) ","main",0,mostCurrent.activityBA,mostCurrent,78);
 com.startapp.android.publish.b4a.StartAppAdWrapper.AdModeTypeWrapper _ad_mode = null;
- //BA.debugLineNum = 78;BA.debugLine="Sub loadRewardedVideo";
- //BA.debugLineNum = 79;BA.debugLine="Dim ad_mode As AdMode";
-_ad_mode = new com.startapp.android.publish.b4a.StartAppAdWrapper.AdModeTypeWrapper();
- //BA.debugLineNum = 80;BA.debugLine="startAppRewardedVideo.setVideoListener(\"VideoList";
+ BA.debugLineNum = 78;BA.debugLine="Sub loadRewardedVideo";
+Debug.ShouldStop(8192);
+ BA.debugLineNum = 79;BA.debugLine="Dim ad_mode As AdMode";
+Debug.ShouldStop(16384);
+_ad_mode = new com.startapp.android.publish.b4a.StartAppAdWrapper.AdModeTypeWrapper();Debug.locals.put("ad_mode", _ad_mode);
+ BA.debugLineNum = 80;BA.debugLine="startAppRewardedVideo.setVideoListener(\"VideoList";
+Debug.ShouldStop(32768);
 mostCurrent._startapprewardedvideo.setVideoListener(mostCurrent.activityBA,"VideoListener");
- //BA.debugLineNum = 81;BA.debugLine="startAppRewardedVideo.loadAdWithAdMode(ad_mode.RE";
+ BA.debugLineNum = 81;BA.debugLine="startAppRewardedVideo.loadAdWithAdMode(ad_mode.RE";
+Debug.ShouldStop(65536);
 mostCurrent._startapprewardedvideo.loadAdWithAdMode(mostCurrent.activityBA,_ad_mode.REWARDED_VIDEO);
- //BA.debugLineNum = 82;BA.debugLine="End Sub";
+ BA.debugLineNum = 82;BA.debugLine="End Sub";
+Debug.ShouldStop(131072);
 return "";
 }
-public static String  _process_globals() throws Exception{
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
+
+public static void initializeProcessGlobals() {
+    if (mostCurrent != null) {
+Debug.StartDebugging(mostCurrent.activityBA, 25350, new int[] {5}, "24a2e2f5-cf87-499f-b7c5-085cd9b5f682");}
+
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        main._process_globals();
+		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}public static String  _process_globals() throws Exception{
  //BA.debugLineNum = 15;BA.debugLine="Sub Process_Globals";
  //BA.debugLineNum = 16;BA.debugLine="End Sub";
 return "";
 }
 public static String  _showbanner() throws Exception{
+try {
+		Debug.PushSubsStack("showBanner (main) ","main",0,mostCurrent.activityBA,mostCurrent,72);
 com.startapp.android.publish.b4a.banner.BannerWrapper _autobanner = null;
 com.startapp.android.publish.b4a.banner.BannerWrapper.BannerPositionWrapper _bannerpositiontoset = null;
- //BA.debugLineNum = 72;BA.debugLine="Sub showBanner";
- //BA.debugLineNum = 73;BA.debugLine="Dim autoBanner As Banner";
-_autobanner = new com.startapp.android.publish.b4a.banner.BannerWrapper();
- //BA.debugLineNum = 74;BA.debugLine="Dim bannerPositionToSet As BannerPosition";
-_bannerpositiontoset = new com.startapp.android.publish.b4a.banner.BannerWrapper.BannerPositionWrapper();
- //BA.debugLineNum = 75;BA.debugLine="autoBanner.addBannerWithPosition(bannerPositionTo";
+ BA.debugLineNum = 72;BA.debugLine="Sub showBanner";
+Debug.ShouldStop(128);
+ BA.debugLineNum = 73;BA.debugLine="Dim autoBanner As Banner";
+Debug.ShouldStop(256);
+_autobanner = new com.startapp.android.publish.b4a.banner.BannerWrapper();Debug.locals.put("autoBanner", _autobanner);
+ BA.debugLineNum = 74;BA.debugLine="Dim bannerPositionToSet As BannerPosition";
+Debug.ShouldStop(512);
+_bannerpositiontoset = new com.startapp.android.publish.b4a.banner.BannerWrapper.BannerPositionWrapper();Debug.locals.put("bannerPositionToSet", _bannerpositiontoset);
+ BA.debugLineNum = 75;BA.debugLine="autoBanner.addBannerWithPosition(bannerPositionTo";
+Debug.ShouldStop(1024);
 _autobanner.addBannerWithPosition(mostCurrent.activityBA,_bannerpositiontoset.BOTTOM);
- //BA.debugLineNum = 76;BA.debugLine="End Sub";
+ BA.debugLineNum = 76;BA.debugLine="End Sub";
+Debug.ShouldStop(2048);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _showsplashad(boolean _firsttime) throws Exception{
+try {
+		Debug.PushSubsStack("showSplashAd (main) ","main",0,mostCurrent.activityBA,mostCurrent,58);
 com.startapp.android.publish.b4a.splash.SplashConfigWrapper _splashconf = null;
 anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper _logotoset = null;
- //BA.debugLineNum = 58;BA.debugLine="Sub showSplashAd(FirstTime As Boolean)";
- //BA.debugLineNum = 59;BA.debugLine="Dim splashConf As SplashConfig";
-_splashconf = new com.startapp.android.publish.b4a.splash.SplashConfigWrapper();
- //BA.debugLineNum = 60;BA.debugLine="Dim logoToSet As Bitmap";
-_logotoset = new anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper();
- //BA.debugLineNum = 61;BA.debugLine="splashConf.initialize";
+Debug.locals.put("FirstTime", _firsttime);
+ BA.debugLineNum = 58;BA.debugLine="Sub showSplashAd(FirstTime As Boolean)";
+Debug.ShouldStop(33554432);
+ BA.debugLineNum = 59;BA.debugLine="Dim splashConf As SplashConfig";
+Debug.ShouldStop(67108864);
+_splashconf = new com.startapp.android.publish.b4a.splash.SplashConfigWrapper();Debug.locals.put("splashConf", _splashconf);
+ BA.debugLineNum = 60;BA.debugLine="Dim logoToSet As Bitmap";
+Debug.ShouldStop(134217728);
+_logotoset = new anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper();Debug.locals.put("logoToSet", _logotoset);
+ BA.debugLineNum = 61;BA.debugLine="splashConf.initialize";
+Debug.ShouldStop(268435456);
 _splashconf.initialize(processBA);
- //BA.debugLineNum = 62;BA.debugLine="splashConf.setAppName(\"B4A with StartApp 3.1.2\")";
+ BA.debugLineNum = 62;BA.debugLine="splashConf.setAppName(\"B4A with StartApp 3.1.2\")";
+Debug.ShouldStop(536870912);
 _splashconf.setAppName(processBA,"B4A with StartApp 3.1.2");
- //BA.debugLineNum = 63;BA.debugLine="logoToSet.initialize(File.DirAssets, \"logo.png\")";
+ BA.debugLineNum = 63;BA.debugLine="logoToSet.initialize(File.DirAssets, \"logo.png\")";
+Debug.ShouldStop(1073741824);
 _logotoset.Initialize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"logo.png");
- //BA.debugLineNum = 64;BA.debugLine="splashConf.setLogo(logoToSet)";
+ BA.debugLineNum = 64;BA.debugLine="splashConf.setLogo(logoToSet)";
+Debug.ShouldStop(-2147483648);
 _splashconf.setLogo(processBA,(android.graphics.Bitmap)(_logotoset.getObject()));
- //BA.debugLineNum = 65;BA.debugLine="startAppSplash.showSplashWithSplashConfig(FirstTi";
+ BA.debugLineNum = 65;BA.debugLine="startAppSplash.showSplashWithSplashConfig(FirstTi";
+Debug.ShouldStop(1);
 mostCurrent._startappsplash.showSplashWithSplashConfig(mostCurrent.activityBA,_firsttime,_splashconf);
- //BA.debugLineNum = 66;BA.debugLine="End Sub";
+ BA.debugLineNum = 66;BA.debugLine="End Sub";
+Debug.ShouldStop(2);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 public static String  _videolistener_videocompleted() throws Exception{
- //BA.debugLineNum = 131;BA.debugLine="Sub VideoListener_VideoCompleted";
- //BA.debugLineNum = 132;BA.debugLine="ToastMessageShow (\"Video Completed\", False)";
+try {
+		Debug.PushSubsStack("VideoListener_VideoCompleted (main) ","main",0,mostCurrent.activityBA,mostCurrent,135);
+ BA.debugLineNum = 135;BA.debugLine="Sub VideoListener_VideoCompleted";
+Debug.ShouldStop(64);
+ BA.debugLineNum = 136;BA.debugLine="ToastMessageShow (\"Video Completed\", False)";
+Debug.ShouldStop(128);
 anywheresoftware.b4a.keywords.Common.ToastMessageShow("Video Completed",anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 133;BA.debugLine="End Sub";
+ BA.debugLineNum = 137;BA.debugLine="End Sub";
+Debug.ShouldStop(256);
 return "";
 }
+catch (Exception e) {
+			Debug.ErrorCaught(e);
+			throw e;
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
 }
